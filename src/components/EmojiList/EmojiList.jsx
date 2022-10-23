@@ -1,22 +1,30 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import EmojiItem from "../EmojiItem/EmojiItem.jsx";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import styles from "./EmojiList.module.scss";
+import { Transition } from "react-transition-group";
 
 function EmojiList({ props }) {
+	const [mounted, setMounted] = useState(false);
+	const nodeRef = useRef(null);
+
+	useEffect(() => {
+		setMounted(true);
+	});
+
 	return (
-		<TransitionGroup component={"div"} className={styles.list_container}>
-			{props.map((item) => (
-				// <CSSTransition
-				// 	classNames={"note"}
-				// 	key={item.title}
-				// 	timeout={400}
-				// >
-				<EmojiItem key={item.title} props={item}></EmojiItem>
-				// </CSSTransition>
-			))}
-		</TransitionGroup>
+		<Transition nodeRef={nodeRef} timeout={500} in={mounted}>
+			{(state) => (
+				<div
+					ref={nodeRef}
+					className={styles.list_container + ` ${state}`}
+				>
+					{props.map((item) => (
+						<EmojiItem key={item.title} props={item}></EmojiItem>
+					))}
+				</div>
+			)}
+		</Transition>
 	);
 }
 

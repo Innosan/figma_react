@@ -8,7 +8,7 @@
   margin-top: 2em;
 }
 .item_container:hover {
-  box-shadow: 0 9px 18px 0 rgba(255, 255, 255, 0.24);
+  background-color: rgba(255, 255, 255, 0.88);
 }
 .item_container p {
   color: black;
