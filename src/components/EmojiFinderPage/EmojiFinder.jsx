@@ -8,6 +8,7 @@ import Search from "../Search/Search.jsx";
 function EmojiFinder(props) {
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [items, setItems] = useState([]);
+	const [search, setSearch] = useState("");
 
 	useEffect(() => {
 		fetch("https://emoji-api-app.herokuapp.com/")
@@ -35,8 +36,16 @@ function EmojiFinder(props) {
 				</svg>
 				Emoji Finder
 			</h1>
-			<Search></Search>
-			<EmojiList props={items}></EmojiList>
+			<Search
+				onLoaded={(searchQuery) => {
+					setSearch(searchQuery);
+				}}
+			></Search>
+			<EmojiList
+				props={items.filter(({ keywords }) =>
+					keywords.includes(search.toLowerCase())
+				)}
+			></EmojiList>
 		</div>
 	);
 }
