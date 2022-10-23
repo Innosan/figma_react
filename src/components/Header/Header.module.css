@@ -1,0 +1,17 @@
+.header_container {
+  display: flex;
+  justify-content: space-between;
+  width: 1040px;
+}
+.header_container a {
+  font-weight: 700;
+  font-size: 30px;
+  color: white;
+  transition: 0.3s;
+  text-decoration: inherit;
+}
+.header_container a:hover {
+  color: #ff5e57;
+}
+
+/*# sourceMappingURL=Header.module.css.map */

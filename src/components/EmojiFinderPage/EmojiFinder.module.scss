@@ -1,0 +1,18 @@
+$iconColor: #ff5e57;
+
+.page_container {
+	margin-top: 5em;
+}
+
+.page_heading {
+	display: flex;
+	align-items: center;
+
+	svg {
+		margin-right: .3em;
+
+		path {
+			fill: $iconColor;
+		}
+	}
+}
