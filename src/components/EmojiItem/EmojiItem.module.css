@@ -27,7 +27,9 @@
 
 .item_keywords {
   color: #3F444A !important;
-  font-size: 1.2rem !important;
+  font-size: 1rem !important;
+  width: 18em;
+  margin: 0 auto;
 }
 
 /*# sourceMappingURL=EmojiItem.module.css.map */

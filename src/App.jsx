@@ -1,17 +1,19 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import "./App.css";
+
+//components
 import Header from "./components/Header/Header.jsx";
-import EmojiFinder from "./components/EmojiFinderPage/EmojiFinder.jsx";
+
+//pages
+import AnimatedRoutes from "./components/AnimatedRoutes/AnimatedRoutes.jsx";
 
 function App() {
 	return (
 		<BrowserRouter>
 			<div className="App">
 				<Header />
-				<Routes>
-					<Route path={"/"} element={<EmojiFinder />} />
-				</Routes>
+				<AnimatedRoutes></AnimatedRoutes>
 			</div>
 		</BrowserRouter>
 	);
