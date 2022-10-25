@@ -4,11 +4,11 @@ import EmojiList from "../../components/EmojiList/EmojiList.jsx";
 import Search from "../../components/Search/Search.jsx";
 import PageHeading from "../../components/PageHeading/PageHeading.jsx";
 
-import logo from "../../assets/icons/emojiFinderLogo.svg";
+import logo from "../../assets/icons/PagesLogos/emojiFinderLogo.svg";
 
 import { motion } from "framer-motion";
 
-function EmojiFinder(props) {
+function EmojiFinder() {
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [items, setItems] = useState([]);
 	const [search, setSearch] = useState("");

@@ -1,0 +1,21 @@
+.card_container {
+	width: 637px;
+
+	background-color: white;
+	border-radius: 28px;
+	height: 350px;
+
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+}
+
+.city_info_container {
+	background: rgba(19, 19, 19, 0.43);
+	backdrop-filter: blur(4px);
+	width: inherit;
+
+	text-align: start;
+
+	border-radius: 0 0 28px 28px;
+}

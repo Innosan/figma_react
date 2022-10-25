@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/icons/harryPotterLogo.svg";
+import logo from "../../assets/icons/PagesLogos/harryPotterLogo.svg";
 import PageHeading from "../../components/PageHeading/PageHeading.jsx";
 
 import { motion } from "framer-motion";

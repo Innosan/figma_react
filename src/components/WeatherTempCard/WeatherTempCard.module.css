@@ -1,0 +1,13 @@
+.card_container {
+  width: 360px;
+  height: 350px;
+  border-radius: 28px;
+  background-color: white;
+}
+.card_container p {
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+/*# sourceMappingURL=WeatherTempCard.module.css.map */
