@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import usePosition from "../../hooks/usePosition.js";
 
 import logo from "../../assets/icons/PagesLogos/weatherLogo.svg";
 import styles from "./Weather.module.scss";
@@ -13,19 +12,32 @@ import { motion } from "framer-motion";
 import axios from "axios";
 
 function Weather() {
-	const { latitude, longitude } = usePosition({});
-	const APIKey = "ece19822df9d679525a51b5d1f8d566a";
-	const [items, setItems] = useState();
+	const [weather, setWeather] = useState([]);
+	let APIKey = "ece19822df9d679525a51b5d1f8d566a";
 
 	useEffect(() => {
+		fetchWeather();
+	}, []);
+
+	const fetchWeather = () => {
 		axios
 			.get(
-				`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${APIKey}`
+				`https://api.openweathermap.org/data/2.5/weather?lat=30&lon=40&units=metric&appid=${APIKey}`
 			)
 			.then((res) => {
-				setItems(res.data);
+				setWeather(res.data);
 			});
-	}, [latitude, longitude]);
+	};
+
+	// useEffect(() => {
+	// 	fetch(
+	// 		`https://api.openweathermap.org/data/2.5/weather?lat=30&lon=40&units=metric&appid=${APIKey}`
+	// 	)
+	// 		.then((res) => res.json())
+	// 		.then((result) => {
+	// 			setWeather(result);
+	// 		});
+	// }, []);
 
 	return (
 		<motion.div
@@ -40,7 +52,7 @@ function Weather() {
 		>
 			<PageHeading pageHeading={"Weather"} pageIcon={logo} />
 			<div className={styles.cards_container}>
-				<WeatherTempCard props={items}></WeatherTempCard>
+				<WeatherTempCard props={weather}></WeatherTempCard>
 				<WeatherCityCard back={cityBackground}></WeatherCityCard>
 			</div>
 		</motion.div>

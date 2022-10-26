@@ -10,8 +10,10 @@ function WeatherCityCard(props) {
 		>
 			<img alt="" />
 			<div className={styles.city_info_container}>
-				<p>St. Petersburg, RU</p>
-				<p>Moderate rain, maximum pain</p>
+				<p className={styles.city_name}>St. Petersburg, RU</p>
+				<p className={styles.weather_desc}>
+					Moderate rain, maximum pain
+				</p>
 			</div>
 		</div>
 	);

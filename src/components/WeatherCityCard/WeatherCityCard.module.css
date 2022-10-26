@@ -15,5 +15,18 @@
   text-align: start;
   border-radius: 0 0 28px 28px;
 }
+.city_info_container p {
+  margin-left: 3rem;
+}
+
+.city_name {
+  font-weight: 700;
+  font-size: 34px;
+}
+
+.weather_desc {
+  font-weight: 300;
+  font-size: 24px;
+}
 
 /*# sourceMappingURL=WeatherCityCard.module.css.map */
