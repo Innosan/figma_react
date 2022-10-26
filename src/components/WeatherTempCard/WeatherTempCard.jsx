@@ -7,7 +7,7 @@ function WeatherTempCard(props) {
 		<div className={styles.card_container}>
 			<h2>
 				<img src="" alt="" />
-				{/*{props.temperature}°C*/}
+				{props.temperature}°C
 			</h2>
 			<p>
 				<img src="" alt="" />
