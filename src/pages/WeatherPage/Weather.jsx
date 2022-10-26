@@ -10,36 +10,29 @@ import WeatherCityCard from "../../components/WeatherCityCard/WeatherCityCard.js
 
 import { motion } from "framer-motion";
 import axios from "axios";
+import usePosition from "../../hooks/usePosition.js";
 
 function Weather() {
 	const [weather, setWeather] = useState([]);
+	const [isLoaded, setIsLoaded] = useState(false);
+	const { latitude, longitude } = usePosition({});
+
 	let APIKey = "ece19822df9d679525a51b5d1f8d566a";
+
+	let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${APIKey}`;
+
+	const fetchWeather = () => {
+		axios.get(url).then((res) => {
+			setWeather(res.data);
+			setIsLoaded(true);
+		});
+	};
 
 	useEffect(() => {
 		fetchWeather();
-	}, []);
+	}, [latitude]);
 
-	const fetchWeather = () => {
-		axios
-			.get(
-				`https://api.openweathermap.org/data/2.5/weather?lat=30&lon=40&units=metric&appid=${APIKey}`
-			)
-			.then((res) => {
-				setWeather(res.data);
-			});
-	};
-
-	// useEffect(() => {
-	// 	fetch(
-	// 		`https://api.openweathermap.org/data/2.5/weather?lat=30&lon=40&units=metric&appid=${APIKey}`
-	// 	)
-	// 		.then((res) => res.json())
-	// 		.then((result) => {
-	// 			setWeather(result);
-	// 		});
-	// }, []);
-
-	return (
+	return isLoaded ? (
 		<motion.div
 			initial={{ opacity: 0, translateX: -500 }}
 			animate={{ opacity: 1, translateX: 0 }}
@@ -53,9 +46,14 @@ function Weather() {
 			<PageHeading pageHeading={"Weather"} pageIcon={logo} />
 			<div className={styles.cards_container}>
 				<WeatherTempCard props={weather}></WeatherTempCard>
-				<WeatherCityCard back={cityBackground}></WeatherCityCard>
+				<WeatherCityCard
+					back={cityBackground}
+					props={weather}
+				></WeatherCityCard>
 			</div>
 		</motion.div>
+	) : (
+		<div></div>
 	);
 }
 

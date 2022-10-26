@@ -9,18 +9,18 @@ function WeatherTempCard({ props }) {
 				<img src="" alt="" />
 				{Math.floor(props.main.temp)}°C
 			</h2>
-			{/*<p>*/}
-			{/*	<img src="" alt="" />*/}
-			{/*	Feels like: {Math.floor(props.props.main.feels_like)}°C*/}
-			{/*</p>*/}
-			{/*<p>*/}
-			{/*	<img src="" alt="" />*/}
-			{/*	Humidity: {props.props.main.humidity}%*/}
-			{/*</p>*/}
-			{/*<p>*/}
-			{/*	<img src="" alt="" />*/}
-			{/*	Wind: {props.props.wind.speed} m/s*/}
-			{/*</p>*/}
+			<p>
+				<img src="" alt="" />
+				Feels like: {Math.floor(props.main.feels_like)}°C
+			</p>
+			<p>
+				<img src="" alt="" />
+				Humidity: {props.main.humidity}%
+			</p>
+			<p>
+				<img src="" alt="" />
+				Wind: {props.wind.speed} m/s
+			</p>
 		</div>
 	);
 }

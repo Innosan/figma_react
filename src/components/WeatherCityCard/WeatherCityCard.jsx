@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./WeatherCityCard.module.scss";
 
-function WeatherCityCard(props) {
+function WeatherCityCard({ props }) {
 	return (
 		<div
 			className={styles.card_container}
@@ -10,9 +10,12 @@ function WeatherCityCard(props) {
 		>
 			<img alt="" />
 			<div className={styles.city_info_container}>
-				<p className={styles.city_name}>St. Petersburg, RU</p>
+				<p className={styles.city_name}>
+					{props.name}, {props.sys.country}
+				</p>
 				<p className={styles.weather_desc}>
-					Moderate rain, maximum pain
+					{props.weather[0].description.toLocaleUpperCase()}, maximum
+					pain
 				</p>
 			</div>
 		</div>
