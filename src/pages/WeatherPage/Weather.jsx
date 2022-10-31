@@ -18,18 +18,23 @@ function Weather() {
 	const { latitude, longitude } = usePosition({});
 
 	let APIKey = "ece19822df9d679525a51b5d1f8d566a";
-
-	let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${APIKey}`;
+	let url = '';
+	if (latitude) {url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${APIKey}`;}
 
 	const fetchWeather = () => {
-		axios.get(url).then((res) => {
-			setWeather(res.data);
-			setIsLoaded(true);
-		});
+		if(url) {
+			axios.get(url).then((res) => {
+				setWeather(res.data);
+				setIsLoaded(true);
+			});
+		}
 	};
 
 	useEffect(() => {
 		fetchWeather();
+		if(latitude){
+			console.log("latitude -> ", latitude)
+		}
 	}, [latitude]);
 
 	return isLoaded ? (
