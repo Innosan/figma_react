@@ -14,8 +14,7 @@ function WeatherCityCard({ props }) {
 					{props.name}, {props.sys.country}
 				</p>
 				<p className={styles.weather_desc}>
-					{props.weather[0].description.toLocaleUpperCase()}, maximum
-					pain
+					{props.weather[0].description.toLocaleUpperCase()}
 				</p>
 			</div>
 		</div>

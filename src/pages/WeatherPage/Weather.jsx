@@ -17,12 +17,17 @@ function Weather() {
 	const [isLoaded, setIsLoaded] = useState(false);
 	const { latitude, longitude } = usePosition({});
 
-	let APIKey = "ece19822df9d679525a51b5d1f8d566a";
-	let url = '';
-	if (latitude) {url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${APIKey}`;}
+	let WeatherAPIKey = "ece19822df9d679525a51b5d1f8d566a";
+	let CityAPIKey = "25b4c94d8c42415e9df76a57cab8b781";
+
+	let url = "";
+
+	if (latitude) {
+		url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${WeatherAPIKey}`;
+	}
 
 	const fetchWeather = () => {
-		if(url) {
+		if (url) {
 			axios.get(url).then((res) => {
 				setWeather(res.data);
 				setIsLoaded(true);
@@ -32,9 +37,6 @@ function Weather() {
 
 	useEffect(() => {
 		fetchWeather();
-		if(latitude){
-			console.log("latitude -> ", latitude)
-		}
 	}, [latitude]);
 
 	return isLoaded ? (
@@ -58,7 +60,7 @@ function Weather() {
 			</div>
 		</motion.div>
 	) : (
-		<div></div>
+		<div>Loading...</div>
 	);
 }
 

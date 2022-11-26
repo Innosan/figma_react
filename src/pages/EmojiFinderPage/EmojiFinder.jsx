@@ -31,6 +31,7 @@ function EmojiFinder() {
 		>
 			<PageHeading pageHeading={"Emoji Finder"} pageIcon={logo} />
 			<Search
+				placeholder={"Keywords..."}
 				onLoaded={(searchQuery) => {
 					setSearch(searchQuery);
 				}}
