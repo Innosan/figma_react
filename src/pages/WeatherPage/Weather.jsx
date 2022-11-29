@@ -9,6 +9,8 @@ import styles from "./Weather.module.scss";
 import PageHeading from "../../components/PageHeading/PageHeading.jsx";
 import WeatherTempCard from "../../components/WeatherTempCard/WeatherTempCard.jsx";
 import WeatherCityCard from "../../components/WeatherCityCard/WeatherCityCard.jsx";
+import Button from "../../components/Button/Button.jsx";
+import Loader from "../../components/Loader/Loader.jsx";
 
 import usePosition from "../../hooks/usePosition.js";
 
@@ -35,27 +37,32 @@ function Weather() {
 	}
 
 	const fetchWeather = () => {
-		if (weatherURL) {
-			axios.get(weatherURL).then((res) => {
-				setWeather(res.data);
+		axios.get(weatherURL).then((res) => {
+			setWeather(res.data);
+		});
+
+		axios.get(cityURL).then((res) => {
+			setCity(res.data);
+
+			unsplashURL = `https://api.unsplash.com/search/photos/?query=${res.data.results[0].components.city}&client_id=${UnsplashAPIKey}`;
+
+			axios.get(unsplashURL).then((res) => {
+				setCityBackground(res.data);
+				setIsLoaded(true);
 			});
-
-			axios.get(cityURL).then((res) => {
-				setCity(res.data);
-
-				unsplashURL = `https://api.unsplash.com/search/photos/?query=${res.data.results[0].components.city}&client_id=${UnsplashAPIKey}`;
-
-				axios.get(unsplashURL).then((res) => {
-					setCityBackground(res.data);
-					setIsLoaded(true);
-				});
-			});
-		}
+		});
 	};
 
 	useEffect(() => {
-		fetchWeather();
+		if (weatherURL) fetchWeather();
 	}, [latitude]);
+
+	function fetchWeatherByCity(lat, lon) {
+		weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${WeatherAPIKey}`;
+		cityURL = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&language=en&key=${CityAPIKey}`;
+
+		fetchWeather();
+	}
 
 	return isLoaded ? (
 		<motion.div
@@ -70,34 +77,36 @@ function Weather() {
 		>
 			<PageHeading pageHeading={"Weather"} pageIcon={logo} />
 			<div className={styles.city_button_container}>
-				<button
-					className={styles.city_button}
+				<Button
+					cityName={"Moscow"}
 					onClick={() => {
-						weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${55.755826}&lon=${37.6173}&units=metric&appid=${WeatherAPIKey}`;
-						cityURL = `https://api.opencagedata.com/geocode/v1/json?q=${55.755826}+${37.6173}&language=en&key=${CityAPIKey}`;
-
-						axios.get(weatherURL).then((res) => {
-							setWeather(res.data);
-						});
-
-						axios.get(cityURL).then((res) => {
-							setCity(res.data);
-
-							unsplashURL = `https://api.unsplash.com/search/photos/?query=${res.data.results[0].components.city}&client_id=${UnsplashAPIKey}`;
-
-							axios.get(unsplashURL).then((res) => {
-								setCityBackground(res.data);
-								setIsLoaded(true);
-							});
-						});
+						fetchWeatherByCity(55.755826, 37.6173);
 					}}
-				>
-					Moscow
-				</button>
-				<button className={styles.city_button}>Tokyo</button>
-				<button className={styles.city_button}>London</button>
-				<button className={styles.city_button}>Berlin</button>
-				<button className={styles.city_button}>Mumbai</button>
+				/>
+				<Button
+					cityName={"Tokyo"}
+					onClick={() => {
+						fetchWeatherByCity(35.689487, 139.691706);
+					}}
+				/>
+				<Button
+					cityName={"London"}
+					onClick={() => {
+						fetchWeatherByCity(51.507351, -0.127758);
+					}}
+				/>
+				<Button
+					cityName={"Berlin"}
+					onClick={() => {
+						fetchWeatherByCity(52.520007, 13.404954);
+					}}
+				/>
+				<Button
+					cityName={"Mumbai"}
+					onClick={() => {
+						fetchWeatherByCity(19.075984, 72.877656);
+					}}
+				/>
 			</div>
 			<div className={styles.cards_container}>
 				<WeatherTempCard props={weather}></WeatherTempCard>
@@ -109,7 +118,7 @@ function Weather() {
 			</div>
 		</motion.div>
 	) : (
-		<div>Loading...</div>
+		<Loader width={64} height={64} color={"white"}></Loader>
 	);
 }
 

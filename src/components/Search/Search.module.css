@@ -6,6 +6,16 @@
   font-size: 22px;
   font-weight: 400;
   border-radius: 16px;
+  outline: none;
+  border: none;
+  transition: 0.3s;
+}
+.input_bar:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+.input_bar:focus {
+  outline: 3px solid #ff5e57;
+  background: white;
 }
 
 /*# sourceMappingURL=Search.module.css.map */

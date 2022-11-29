@@ -1,10 +1,9 @@
-import EmojiItem from "../EmojiItem/EmojiItem.jsx";
-
-import styles from "./EmojiList.module.scss";
-
 import { motion } from "framer-motion";
 
-function EmojiList({ props }) {
+import styles from "./CharacterList.module.scss";
+import CharacterItem from "../CharacterItem/ChatacterItem.jsx";
+
+function CharacterList({ props }) {
 	return (
 		<motion.div
 			key={styles}
@@ -18,11 +17,14 @@ function EmojiList({ props }) {
 		>
 			<div className={styles.list_container}>
 				{props.map((item) => (
-					<EmojiItem key={item.title} props={item}></EmojiItem>
+					<CharacterItem
+						key={item.title}
+						props={item}
+					></CharacterItem>
 				))}
 			</div>
 		</motion.div>
 	);
 }
 
-export default EmojiList;
+export default CharacterList;

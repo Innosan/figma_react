@@ -9,4 +9,18 @@
 	font-weight: 400;
 
 	border-radius: 16px;
+
+	outline: none;
+	border: none;
+
+	transition: .3s;
+
+	&:hover {
+		background: rgba(255, 255, 255, 0.8);
+	}
+
+	&:focus {
+		outline: 3px solid #ff5e57;
+		background: white;
+	}
 }

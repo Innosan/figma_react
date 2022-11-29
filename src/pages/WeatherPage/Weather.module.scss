@@ -9,21 +9,3 @@
 	margin-bottom: 20px;
 	margin-top: 50px;
 }
-
-.city_button {
-	background: none;
-	color: white;
-
-	font-size: 32px;
-	font-weight: 800;
-
-	text-transform: uppercase;
-
-	padding: 0.3em 0.6em;
-
-	transition: .3s;
-
-	&:hover {
-		color: rgba(255, 255, 255, 0.8);
-	}
-}
