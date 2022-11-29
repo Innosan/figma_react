@@ -6,10 +6,20 @@
   border-radius: 28px;
   background-color: white;
 }
+.card_container h2 {
+  font-weight: 800;
+  font-size: 56px;
+}
 .card_container p {
   font-family: Poppins;
   font-weight: 600;
   font-size: 24px;
+  display: flex;
+  align-items: center;
+  margin-left: 50px;
+}
+.card_container p svg {
+  margin-right: 10px;
 }
 
 /*# sourceMappingURL=WeatherTempCard.module.css.map */

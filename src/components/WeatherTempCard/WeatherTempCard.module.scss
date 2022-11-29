@@ -10,9 +10,23 @@
 
 	background-color: white;
 
+	h2 {
+		font-weight: 800;
+		font-size: 56px;
+	}
+
 	p {
 		font-family: Poppins;
 		font-weight: 600;
 		font-size: 24px;
+
+		display: flex;
+		align-items: center;
+
+		margin-left: 50px;
+
+		svg {
+			margin-right: 10px;
+		}
 	}
 }
