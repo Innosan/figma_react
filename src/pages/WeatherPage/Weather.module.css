@@ -4,4 +4,22 @@
   justify-content: space-between;
 }
 
+.city_button_container {
+  margin-bottom: 20px;
+  margin-top: 50px;
+}
+
+.city_button {
+  background: none;
+  color: white;
+  font-size: 32px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 0.3em 0.6em;
+  transition: 0.3s;
+}
+.city_button:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 /*# sourceMappingURL=Weather.module.css.map */

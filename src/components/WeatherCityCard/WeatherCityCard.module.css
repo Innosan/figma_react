@@ -6,8 +6,12 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  background-position-y: bottom;
-  background-size: cover;
+  background-size: 120%;
+  background-position: bottom;
+  transition: 0.6s;
+}
+.card_container:hover {
+  background-size: 100%;
 }
 
 .city_info_container {
@@ -16,9 +20,13 @@
   width: inherit;
   text-align: start;
   border-radius: 0 0 28px 28px;
+  transition: 0.3s;
 }
 .city_info_container p {
   margin-left: 3rem;
+}
+.city_info_container:hover {
+  background: rgba(19, 19, 19, 0.63);
 }
 
 .city_name {

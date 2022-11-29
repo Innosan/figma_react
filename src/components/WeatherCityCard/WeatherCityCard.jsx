@@ -10,11 +10,9 @@ function WeatherCityCard(props) {
 				backgroundImage: `url(${props.background.results[3].urls.regular})`,
 			}}
 		>
-			<img alt="" />
 			<div className={styles.city_info_container}>
 				<p className={styles.city_name}>
-					{props.cityData.results[0].components.city},{" "}
-					{props.weatherData.sys.country}
+					{props.weatherData.name}, {props.weatherData.sys.country}
 				</p>
 				<p className={styles.weather_desc}>
 					{props.weatherData.weather[0].description.toLocaleUpperCase()}
