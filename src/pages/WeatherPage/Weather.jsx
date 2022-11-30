@@ -13,6 +13,7 @@ import Button from "../../components/Button/Button.jsx";
 import Loader from "../../components/Loader/Loader.jsx";
 
 import usePosition from "../../hooks/usePosition.js";
+import Search from "../../components/Search/Search.jsx";
 
 function Weather() {
 	const [weather, setWeather] = useState([]);
@@ -22,6 +23,9 @@ function Weather() {
 	const [isLoaded, setIsLoaded] = useState(false);
 
 	const { latitude, longitude } = usePosition({});
+
+	const [search, setSearch] = useState("");
+	const [show, setShow] = useState(false);
 
 	let WeatherAPIKey = "ece19822df9d679525a51b5d1f8d566a";
 	let CityAPIKey = "25b4c94d8c42415e9df76a57cab8b781";
@@ -62,6 +66,10 @@ function Weather() {
 		cityURL = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&language=en&key=${CityAPIKey}`;
 
 		fetchWeather();
+	}
+
+	const showSearchBar = () => {
+		setShow(!show);
 	}
 
 	return isLoaded ? (
@@ -116,6 +124,10 @@ function Weather() {
 					cityData={city}
 				></WeatherCityCard>
 			</div>
+			<Search placeholder={"Type your city..."} onLoaded={(searchQuery) => {
+				setSearch(searchQuery);
+			}}></Search>
+
 		</motion.div>
 	) : (
 		<Loader width={64} height={64} color={"white"}></Loader>
