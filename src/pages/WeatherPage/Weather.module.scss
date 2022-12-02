@@ -2,10 +2,36 @@
 	display: flex;
 	flex-direction: row;
 
+	margin-top: 30px;
+
 	justify-content: space-between;
 }
 
-.city_button_container {
-	margin-bottom: 20px;
-	margin-top: 50px;
+.show {
+	z-index: 1;
+	position: absolute;
+	box-shadow:0 0 0 2000px rgba(0,0,0,0.5);
+
+	padding: 20px;
+	margin-top: 20px;
+
+	border-radius: 12px;
+	background: #1a1a1a;
+}
+
+.pick_city_btn {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+
+	font-size: 22px;
+	font-weight: 700;
+
+	text-transform: uppercase;
+
+	transition: .3s;
+
+	&:hover {
+		background: rgba(255, 255, 255, 0.8);
+	}
 }

@@ -2,6 +2,7 @@
   width: 460px;
   height: 48px;
   padding-left: 15px;
+  margin-top: 20px;
   font-family: Poppins !important;
   font-size: 22px;
   font-weight: 400;
@@ -16,6 +17,11 @@
 .input_bar:focus {
   outline: 3px solid #ff5e57;
   background: white;
+}
+
+.cont {
+  width: 120px;
+  height: 40px;
 }
 
 /*# sourceMappingURL=Search.module.css.map */

@@ -4,12 +4,8 @@ import styles from "../EmojiItem/EmojiItem.module.scss";
 function CharacterItem(item) {
 	return (
 		<div className={styles.item_container}>
-			<h2>{props.characterName}</h2>
-			<img src={item.props.image} alt="Character"/>
-			<div>
-				<img src="" alt="" />
-				<p className={styles.item_icon}>{item.props.name}</p>
-			</div>
+			<h2>{item.props.name}</h2>
+			<img src={item.props.image} alt="Character" />
 			<div>
 				<img src="" alt="" />
 				<p className={styles.item_title}>{item.props.actor}</p>
