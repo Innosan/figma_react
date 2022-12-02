@@ -1,17 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700;800&display=swap");
 
-@keyframes fromBottom {
-	0% {
-		opacity: 0;
-		transform: translateY(2000px);
-	}
-
-	100% {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
 @keyframes fromUpperHeader {
 	0% {
 		opacity: 0;
@@ -34,7 +22,7 @@
 	color: rgba(255, 255, 255, 0.87);
 	background-color: #242424;
 
-	overflow-y: overlay;
+	overflow-y: hidden;
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -52,10 +40,16 @@
 
 body {
 	font-family: Poppins;
+
 	margin: 0;
+
 	display: flex;
+
+	position: relative;
+
 	min-width: 320px;
 	min-height: 100vh;
+
 	background-color: #1a1a1a;
 }
 
@@ -71,12 +65,17 @@ h1 {
 button {
 	border-radius: 8px;
 	border: 1px solid transparent;
+
 	padding: 0.6em 1.2em;
+
 	font-size: 1em;
 	font-weight: 500;
 	font-family: inherit;
+
 	background-color: #1a1a1a;
+
 	cursor: pointer;
+
 	transition: border-color 0.25s;
 }
 button:hover {

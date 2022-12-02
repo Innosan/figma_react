@@ -1,0 +1,38 @@
+.footer {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+
+	gap: 100px;
+
+	position: absolute;
+
+	bottom:0;
+
+	padding-bottom: 40px;
+
+	a {
+		img {
+			border-radius: 12px;
+
+			padding: 2px;
+
+			transition: .3s;
+
+			&:hover {
+				background: white;
+			}
+		}
+	}
+}
+
+.footer_heading {
+	font-size: 22px;
+	font-weight: 700;
+}
+
+.icons {
+	display: flex;
+
+	gap: 20px;
+}

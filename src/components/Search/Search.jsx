@@ -3,11 +3,11 @@ import styles from "./Search.module.scss";
 
 import { AnimatePresence, motion } from "framer-motion";
 
-function Search(props) {
+function Search({ placeholder, onLoaded }) {
 	const [searchQuery, setSearchQuery] = useState("");
 
 	useEffect(() => {
-		props.onLoaded(searchQuery);
+		onLoaded(searchQuery);
 	}, [searchQuery]);
 
 	return (
@@ -23,7 +23,7 @@ function Search(props) {
 						<input
 							className={styles.input_bar}
 							type="text"
-							placeholder={props.placeholder}
+							placeholder={placeholder}
 							onChange={(event) => {
 								setSearchQuery(event.target.value);
 							}}

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/icons/PagesLogos/harryPotterLogo.svg";
 import styles from "./HarryPotter.module.scss";
 
@@ -11,7 +11,7 @@ import CharacterList from "../../components/CharacterList/CharacterList.jsx";
 import axios from "axios";
 import Loader from "../../components/Loader/Loader.jsx";
 
-function HarryPotter(props) {
+function HarryPotter() {
 	const [characterList, setCharacterList] = useState([]);
 	const [search, setSearch] = useState("");
 
@@ -22,12 +22,12 @@ function HarryPotter(props) {
 	const fetchCharacters = () => {
 		axios.get(characterURL).then((res) => {
 			setCharacterList(res.data);
-		})
-	}
+			setIsLoaded(true);
+		});
+	};
 
 	useEffect(() => {
 		fetchCharacters();
-		setIsLoaded(true);
 	}, []);
 
 	return isLoaded ? (
@@ -47,9 +47,7 @@ function HarryPotter(props) {
 				></Search>
 				<Select></Select>
 			</div>
-			<CharacterList props={characterList}>
-
-			</CharacterList>
+			<CharacterList props={characterList}></CharacterList>
 		</motion.div>
 	) : (
 		<Loader width={64} height={64} color={"white"}></Loader>

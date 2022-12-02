@@ -2,6 +2,7 @@ import styles from "./Header.module.scss";
 
 import { NavLink } from "react-router-dom";
 import { Transition } from "react-transition-group";
+
 import { useEffect, useRef, useState } from "react";
 
 function Header() {
@@ -19,7 +20,10 @@ function Header() {
 					ref={nodeRef}
 					className={styles.header_container + ` ${state}_header`}
 				>
-					<NavLink to={"/"}>EmojiFinder</NavLink>
+					<NavLink to={"/"} end={true}>
+						Home
+					</NavLink>
+					<NavLink to={"/emoji-finder"}>EmojiFinder</NavLink>
 					<NavLink to={"/weather"}>Weather</NavLink>
 					<NavLink to={"/harry-potter"}>HarryPotter</NavLink>
 					<NavLink to={"/guess-number"}>Guess Number</NavLink>

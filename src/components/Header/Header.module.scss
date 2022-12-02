@@ -1,4 +1,4 @@
-$hoverColor: #ff5e57;
+$hoverColor: rgba(255, 255, 255, 0.8);
 
 .header_container {
 	display: flex;
@@ -7,7 +7,7 @@ $hoverColor: #ff5e57;
 
 	a {
 		font-weight: 700;
-		font-size: 30px;
+		font-size: 24px;
 		color: white;
 		transition: 0.3s;
 		text-decoration: inherit;
