@@ -1,15 +1,8 @@
-import React, { useEffect, useState } from "react";
 import styles from "./Search.module.scss";
 
 import { AnimatePresence, motion } from "framer-motion";
 
-function Search({ placeholder, onLoaded }) {
-	const [searchQuery, setSearchQuery] = useState("");
-
-	useEffect(() => {
-		onLoaded(searchQuery);
-	}, [searchQuery]);
-
+function Search({ placeholder, search, onSearchTextChange }) {
 	return (
 		<div>
 			<AnimatePresence>
@@ -23,10 +16,11 @@ function Search({ placeholder, onLoaded }) {
 						<input
 							className={styles.input_bar}
 							type="text"
+							value={search}
+							onChange={(event) =>
+								onSearchTextChange(event.target.value)
+							}
 							placeholder={placeholder}
-							onChange={(event) => {
-								setSearchQuery(event.target.value);
-							}}
 						/>
 					</label>
 				</motion.div>

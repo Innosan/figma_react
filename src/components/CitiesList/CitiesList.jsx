@@ -4,16 +4,16 @@ import styles from "./CitiesList.module.scss";
 
 import Button from "../Button/Button.jsx";
 
-function CitiesList(props) {
+function CitiesList({ style, cities, fetch, close }) {
 	return (
-		<div className={styles.container} style={props.style}>
-			{props.cities.map((city) => (
+		<div className={styles.container} style={style}>
+			{cities.map((city) => (
 				<Button
 					key={city.name}
 					cityName={city.name}
 					onClick={() => {
-						props.fetch(city.lat, city.lon);
-						props.close();
+						fetch(city.lat, city.lon);
+						close();
 					}}
 				></Button>
 			))}

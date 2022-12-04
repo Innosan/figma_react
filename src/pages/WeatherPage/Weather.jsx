@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 /**
  * libs
  */
 import { motion } from "framer-motion";
-import axios from "axios";
 
 /**
  * assets
@@ -25,32 +24,23 @@ import CitiesList from "../../components/CitiesList/CitiesList.jsx";
 /**
  * hooks
  */
-import usePosition from "../../hooks/usePosition.js";
+import useAxiosWeather from "../../hooks/useAxiosWeather.js";
 
 function Weather() {
-	const [weather, setWeather] = useState([]);
-	const [city, setCity] = useState([]);
-	const [cityBackground, setCityBackground] = useState([]);
-
-	const [isLoaded, setIsLoaded] = useState(false);
-
-	const { latitude, longitude } = usePosition({});
-
 	const [search, setSearch] = useState("");
 	const [show, setShow] = useState(false);
 
-	let WeatherAPIKey = "ece19822df9d679525a51b5d1f8d566a";
-	let CityAPIKey = "25b4c94d8c42415e9df76a57cab8b781";
-	let UnsplashAPIKey = "gcK-21RopHVCGDUNDowX9e41Uy32hvBwV_YjnUPczAw";
-
-	let weatherURL,
-		cityURL,
-		unsplashURL = "";
-
-	if (latitude) {
-		weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${WeatherAPIKey}`;
-		cityURL = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&language=en&key=${CityAPIKey}`;
-	}
+	/**
+	 *	setting up app data, getting weather data, city name for unsplash API
+	 *	and city background
+	 */
+	const {
+		weatherData,
+		cityBackgroundData,
+		cityData,
+		isLoaded,
+		fetchWeatherByCity,
+	} = useAxiosWeather();
 
 	const popularCities = [
 		{
@@ -117,51 +107,12 @@ function Weather() {
 	];
 
 	/**
-	 *	setting up app data, getting weather data, city name for unsplash API
-	 *	and city background
-	 */
-	const fetchWeather = () => {
-		axios.get(weatherURL).then((res) => {
-			setWeather(res.data);
-		});
-
-		axios.get(cityURL).then((res) => {
-			setCity(res.data);
-
-			unsplashURL = `https://api.unsplash.com/search/photos/?query=${res.data.results[0].components.city}&client_id=${UnsplashAPIKey}`;
-
-			axios.get(unsplashURL).then((res) => {
-				setCityBackground(res.data);
-				setIsLoaded(true);
-			});
-		});
-	};
-
-	useEffect(() => {
-		if (weatherURL) fetchWeather();
-	}, [latitude]);
-
-	/**
-	 * updating app data on button click,
-	 * for example click on mumbai to get mumbai weather etc.
-	 *
-	 * @param lat - custom latitude, set from buttons like popular cities
-	 * @param lon - custom longitude, set from buttons like popular cities
-	 */
-	function fetchWeatherByCity(lat, lon) {
-		weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${WeatherAPIKey}`;
-		cityURL = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&language=en&key=${CityAPIKey}`;
-
-		fetchWeather();
-	}
-
-	/**
 	 * function to show city search bar
 	 * and found cities list
 	 */
-	const showSearchBar = () => {
+	function showSearchBar() {
 		setShow(!show);
-	};
+	}
 
 	return isLoaded ? (
 		<motion.div
@@ -200,9 +151,8 @@ function Weather() {
 				>
 					<Search
 						placeholder={"Type your city..."}
-						onLoaded={(searchQuery) => {
-							setSearch(searchQuery);
-						}}
+						search={search}
+						onSearchTextChange={setSearch}
 					></Search>
 					<CitiesList
 						style={{
@@ -214,17 +164,17 @@ function Weather() {
 						cities={allCities.filter(({ name }) =>
 							name.toLowerCase().includes(search.toLowerCase())
 						)}
-						fetch={fetchWeatherByCity}
 						close={showSearchBar}
+						fetch={fetchWeatherByCity}
 					></CitiesList>
 				</motion.div>
 			) : null}
 			<div className={styles.cards_container}>
-				<WeatherTempCard props={weather}></WeatherTempCard>
+				<WeatherTempCard props={weatherData}></WeatherTempCard>
 				<WeatherCityCard
-					background={cityBackground}
-					weatherData={weather}
-					cityData={city}
+					background={cityBackgroundData}
+					weatherData={weatherData}
+					cityData={cityData}
 				></WeatherCityCard>
 			</div>
 			<CitiesList

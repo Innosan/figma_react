@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { motion } from "framer-motion";
 
@@ -8,7 +8,15 @@ import vkLogo from "../../assets/icons/SocialIcons/vk.svg";
 import telegramLogo from "../../assets/icons/SocialIcons/telegram.svg";
 
 function Footer() {
-	return (
+	const [isFooterVis, setIsFooterVis] = useState(false);
+
+	useEffect(() => {
+		setTimeout(() => {
+			setIsFooterVis(true);
+		}, 1000);
+	}, []);
+
+	return isFooterVis ? (
 		<motion.footer
 			className={styles.footer}
 			key={styles}
@@ -46,7 +54,7 @@ function Footer() {
 				</div>
 			</div>
 		</motion.footer>
-	);
+	) : null;
 }
 
 export default Footer;

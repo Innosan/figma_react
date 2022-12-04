@@ -1,21 +1,53 @@
-import React, { useEffect, useState } from "react";
-
 import { motion } from "framer-motion";
 
 import logo from "../../assets/icons/PagesLogos/homeLogo.svg";
+
+import viteLogo from "../../assets/logos/vite.svg";
+import openWeatherLogo from "../../assets/logos/openweather.svg";
+import unsplashLogo from "../../assets/logos/unsplash.svg";
+import reactLogo from "../../assets/logos/react.svg";
+import framerLogo from "../../assets/logos/framer.svg";
+import axiosLogo from "../../assets/logos/axios.svg";
+
 import styles from "./Home.module.scss";
 
 import PageHeading from "../../components/PageHeading/PageHeading.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
+import ToolCard from "../../components/ToolCard/ToolCard.jsx";
 
 function Home() {
-	const [isFooterVis, setIsFooterVis] = useState(false);
-
-	useEffect(() => {
-		setTimeout(() => {
-			setIsFooterVis(true);
-		}, 1000);
-	}, []);
+	const tools = [
+		{
+			title: "OpenWeather API",
+			logo: openWeatherLogo,
+			link: "https://openweathermap.org/",
+		},
+		{
+			title: "Unsplash API",
+			logo: unsplashLogo,
+			link: "https://unsplash.com/developers",
+		},
+		{
+			title: "React",
+			logo: reactLogo,
+			link: "https://reactjs.org/",
+		},
+		{
+			title: "Vite",
+			logo: viteLogo,
+			link: "https://vitejs.dev/",
+		},
+		{
+			title: "Framer Motion",
+			logo: framerLogo,
+			link: "https://www.framer.com/motion/",
+		},
+		{
+			title: "Axios",
+			logo: axiosLogo,
+			link: "https://axios-http.com/",
+		},
+	];
 
 	return (
 		<motion.div
@@ -32,7 +64,19 @@ function Home() {
 				</p>
 				<p>Feel free to try out every little bit of it!</p>
 			</div>
-			{isFooterVis ? <Footer></Footer> : null}
+			<div className={styles.tools}>
+				<p className={styles.project_heading}>Used Tools</p>
+				<div className={styles.tools_container}>
+					{tools.map((tool) => (
+						<ToolCard
+							toolLink={tool.link}
+							toolTitle={tool.title}
+							toolLogo={tool.logo}
+						></ToolCard>
+					))}
+				</div>
+			</div>
+			<Footer></Footer>
 		</motion.div>
 	);
 }

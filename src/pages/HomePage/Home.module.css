@@ -1,7 +1,28 @@
 .content {
-	font-size: 24px;
-	font-weight: 600;
-	width: 800px;
+  font-size: 24px;
+  font-weight: 600;
+  width: 800px;
+}
+
+.tools {
+  margin-top: 60px;
+}
+
+.project_heading {
+  background: white;
+  color: black;
+  padding: 12px 12px;
+  width: fit-content;
+  border-radius: 16px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.tools_container {
+  display: flex;
+  width: 1040px;
+  flex-wrap: wrap;
+  gap: 30px;
 }
 
 /*# sourceMappingURL=Home.module.css.map */
