@@ -25,6 +25,7 @@ import CitiesList from "../../components/CitiesList/CitiesList.jsx";
  * hooks
  */
 import useAxiosWeather from "../../hooks/useAxiosWeather.js";
+import GeolocationError from "../../components/GeolocationError/GeolocationError.jsx";
 
 function Weather() {
 	const [search, setSearch] = useState("");
@@ -35,11 +36,12 @@ function Weather() {
 	 *	and city background
 	 */
 	const {
-		weatherData,
-		cityBackgroundData,
-		cityData,
+		weather,
+		cityBackground,
+		city,
 		isLoaded,
 		fetchWeatherByCity,
+		positionError,
 	} = useAxiosWeather();
 
 	const popularCities = [
@@ -141,6 +143,7 @@ function Weather() {
 					/>
 				</svg>
 			</button>
+			{positionError ? <GeolocationError></GeolocationError> : null}
 			{show ? (
 				<motion.div
 					className={styles.show}
@@ -170,16 +173,17 @@ function Weather() {
 				</motion.div>
 			) : null}
 			<div className={styles.cards_container}>
-				<WeatherTempCard props={weatherData}></WeatherTempCard>
+				<WeatherTempCard props={weather}></WeatherTempCard>
 				<WeatherCityCard
-					background={cityBackgroundData}
-					weatherData={weatherData}
-					cityData={cityData}
+					background={cityBackground}
+					weatherData={weather}
+					cityData={city}
 				></WeatherCityCard>
 			</div>
 			<CitiesList
 				cities={popularCities}
 				fetch={fetchWeatherByCity}
+				close={() => {}}
 			></CitiesList>
 		</motion.div>
 	) : (

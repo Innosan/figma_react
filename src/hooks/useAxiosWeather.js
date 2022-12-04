@@ -12,7 +12,7 @@ const useAxiosWeather = () => {
 	const [error, setError] = useState({});
 	const [isLoaded, setIsLoaded] = useState(false);
 
-	const { latitude, longitude } = usePosition({});
+	const { latitude, longitude, positionError } = usePosition();
 
 	let WeatherAPIKey = "ece19822df9d679525a51b5d1f8d566a";
 	let CityAPIKey = "25b4c94d8c42415e9df76a57cab8b781";
@@ -71,12 +71,13 @@ const useAxiosWeather = () => {
 	}, [latitude]);
 
 	return {
-		weatherData,
-		cityData,
-		cityBackgroundData,
+		weather: weatherData,
+		city: cityData,
+		cityBackground: cityBackgroundData,
 		error,
 		isLoaded,
 		fetchWeatherByCity,
+		positionError,
 	};
 };
 

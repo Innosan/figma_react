@@ -13,7 +13,7 @@ function Footer() {
 	useEffect(() => {
 		setTimeout(() => {
 			setIsFooterVis(true);
-		}, 1000);
+		}, 3500);
 	}, []);
 
 	return isFooterVis ? (

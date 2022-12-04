@@ -67,11 +67,13 @@ function Home() {
 			<div className={styles.tools}>
 				<p className={styles.project_heading}>Used Tools</p>
 				<div className={styles.tools_container}>
-					{tools.map((tool) => (
+					{tools.map((tool, index) => (
 						<ToolCard
+							key={index}
 							toolLink={tool.link}
 							toolTitle={tool.title}
 							toolLogo={tool.logo}
+							animationDelay={index}
 						></ToolCard>
 					))}
 				</div>
